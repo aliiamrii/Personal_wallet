@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'purchases',
     'rest_framework',
     'rest_framework_simplejwt',
-    'accounts'
+    'accounts',
+    'corsheaders'
 ]
 
 
@@ -53,6 +54,7 @@ REST_FRAMEWORK = {
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -132,3 +134,33 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+
+CORS_ALLOW_ALL_ORIGINS = True  # در محیط توسعه همه درخواست‌ها را بپذیر
+
+CORS_ALLOW_CREDENTIALS = True  # برای ارسال کوکی‌ها
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:4200",  # اگر از Angular استفاده می‌کنی
+    "http://127.0.0.1:4200",  # یا این آدرس را اضافه کن
+    "https://your-frontend-domain.com",  # دامنه اصلی فرانت‌اند در سرور
+]
+
+CORS_ALLOW_METHODS = [  # متدهای مجاز
+    "GET",
+    "POST",
+    "PUT",
+    "PATCH",
+    "DELETE",
+    "OPTIONS",
+]
+
+CORS_ALLOW_HEADERS = [  # هدرهای مجاز
+    "authorization",
+    "content-type",
+    "accept",
+    "origin",
+    "x-requested-with",
+]
