@@ -22,14 +22,20 @@ def create_group(request):
 
 
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def generate_invite_link(request, group_id):
     group = get_object_or_404(Group, id=group_id)
+    
+    if request.user not in group.members.all():
+        return Response({"error": "You are not a member of this group."}, status=403)
+    
     invite = GroupInvitation.objects.create(group=group)
     link = f"http://your-frontend.com/join-group/{invite.token}/"
     return Response({"invite_link": link})
 
 
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def join_group_by_token(request, token):
     try:
         invitation = GroupInvitation.objects.get(token=token)
