@@ -8,7 +8,16 @@ class TaskNameSerializer(serializers.ModelSerializer):
 
 class PurchaseSerializer(serializers.ModelSerializer):
     user = serializers.ReadOnlyField(source='user.username')
+    task_name_display = serializers.CharField(source='task_name.name', read_only=True)
 
     class Meta:
         model = Purchase
-        fields = '__all__'
+        fields = [
+            'id',
+            'user',
+            'task_name',         
+            'task_name_display', 
+            'description',
+            'cost',
+            'purchase_date'
+        ]
