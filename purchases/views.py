@@ -113,7 +113,6 @@ def category_spending_comparison(request):
     if not category:
         return Response({'error': 'Category is required'}, status=400)
 
-    print(start_date, end_date)
     #calc the usege of the user and all users
     user_spending = Purchase.objects.filter(
         user=user,
