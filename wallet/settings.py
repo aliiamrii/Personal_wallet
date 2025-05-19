@@ -32,6 +32,14 @@ ALLOWED_HOSTS = [
     
 ]
 
+#the authentication is from the customUser modele not django defulte USER modele
+AUTH_USER_MODEL = 'accounts.CustomUser'
+
+
+#this is for the profile picture to add and save the in this path
+import os
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Application definition
 
