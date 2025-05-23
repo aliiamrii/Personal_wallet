@@ -55,7 +55,8 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'accounts',
     'corsheaders',
-    'splitwise'
+    'splitwise',
+    'drf_yasg',
 ]
 
 
